@@ -1,0 +1,2 @@
+bibtexparser
+git+https://github.com/yuchenlin/rebiber.git#egg=rebiber
