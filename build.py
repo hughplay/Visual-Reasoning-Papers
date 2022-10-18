@@ -1,11 +1,10 @@
 import argparse
+import os
 from datetime import datetime
 
 import bibtexparser
+import rebiber
 from bibtexparser.bparser import BibTexParser
-from bibtexparser.customization import *
-from bibtexparser.bwriter import BibTexWriter
-from bibtexparser.bibdatabase import BibDatabase
 
 
 def conference_abbr(entry):
@@ -35,26 +34,17 @@ def conference_abbr(entry):
     return ""
 
 
-def main(args):
-    with open(args.input_bib) as input_bib:
-        parser = BibTexParser()
-        entries = bibtexparser.load(input_bib, parser=parser).entries_dict
-
-    mentioned_keys = render_markdown(args.input_md, args.output_md, entries)
-    mentioned_entries = []
-    for key in mentioned_keys:
-        mentioned_entries.append(entries[key])
-
-    db = BibDatabase()
-    db.entries = mentioned_entries
-
-    writer = BibTexWriter()
-    writer.indent = "  "
-    with open(args.output_bib, "w") as bibfile:
-        bibfile.write(writer.write(db))
+def rebiber_bib(raw_datasets_bib, raw_methods_bib, output_bib):
+    dataset_entries = rebiber.load_bib_file(raw_datasets_bib)
+    methods_entries = rebiber.load_bib_file(raw_methods_bib)
+    all_bib_entries = dataset_entries + methods_entries
+    filepath = os.path.abspath(rebiber.__file__).replace("__init__.py", "")
+    bib_list_path = os.path.join(filepath, "bib_list.txt")
+    bib_db = rebiber.construct_bib_db(bib_list_path, start_dir=filepath)
+    rebiber.normalize_bib(bib_db, all_bib_entries, output_bib, sort=True)
 
 
-def render_markdown(input_md, output_md, entries):
+def render_markdown(input_md, output_md, entries, dataset_keys):
     mentioned_keys = []
     rendered_lines = []
     with open(input_md) as template_file:
@@ -64,9 +54,20 @@ def render_markdown(input_md, output_md, entries):
     for line in lines:
 
         if "Last update time" in line:
-            line = line.replace(
-                "{date}", datetime.now().strftime("%Y-%m-%d")
-            )
+            line = line.replace("{date}", datetime.now().strftime("%Y-%m-%d"))
+
+        if "{paper_list_by_year}" in line:
+            line = ""
+            year = None
+            for entry in sorted(
+                entries.values(), key=lambda x: x["year"], reverse=True
+            ):
+                if year != entry["year"]:
+                    year = entry["year"]
+                    line += f"\n## {year}\n"
+                line += render_paper(
+                    entry, is_dataset=entry["ID"] in dataset_keys
+                )
 
         if line.startswith("<!-- BEGIN ENTRIES -->"):
             render_on = True
@@ -78,37 +79,8 @@ def render_markdown(input_md, output_md, entries):
             if entry_key in entries:
                 entry = entries[entry_key]
                 mentioned_keys.append(entry_key)
+                line = render_paper(entry, is_dataset=entry_key in dataset_keys)
 
-                title = entry["title"].replace("{", "").replace("}", "")
-                line = f"- **{title}**"
-
-                if "author" in entry:
-                    if len(entry["author"].split(" and ")) > 1:
-                        line += f", {entry['author'].split(' and ')[0].split(',')[-1]} et al."
-                    else:
-                        line += f", {entry['author'].replace(',', '')}"
-
-                abbr = conference_abbr(entry)
-                year = entry["year"] if "year" in entry else ""
-
-                line += f", {abbr} {year}"
-
-                line += "."
-
-                if "url" in entry:
-                    line += f" [Paper]({entry['url']})"
-
-                if "project" in entry:
-                    if not line.endswith("."):
-                        line += " / "
-                    line += f" [Project]({entry['project']})"
-
-                if "code" in entry:
-                    if not line.endswith("."):
-                        line += " / "
-                    line += f" [Code]({entry['code']})"
-
-                line += "\n"
         rendered_lines.append(line)
 
     with open(output_md, "w") as output_file:
@@ -117,10 +89,75 @@ def render_markdown(input_md, output_md, entries):
     return mentioned_keys
 
 
+def render_paper(entry, is_dataset=False):
+    line = "-"
+
+    if is_dataset:
+        line += " ★"
+
+    title = entry["title"].replace("{", "").replace("}", "")
+    line += f" **{title}**"
+
+    if "author" in entry:
+        if len(entry["author"].split(" and ")) > 1:
+            line += (
+                f", {entry['author'].split(' and ')[0].split(',')[-1]} et al."
+            )
+        else:
+            line += f", {entry['author'].replace(',', '')}"
+
+    abbr = conference_abbr(entry)
+    year = entry["year"] if "year" in entry else ""
+
+    line += f", {abbr} {year}"
+
+    line += "."
+
+    if "url" in entry:
+        line += f" [Paper]({entry['url']})"
+
+    if "project" in entry:
+        if not line.endswith("."):
+            line += " / "
+        line += f" [Project]({entry['project']})"
+
+    if "code" in entry:
+        if not line.endswith("."):
+            line += " / "
+        line += f" [Code]({entry['code']})"
+
+    line += "\n"
+    return line
+
+
+def main(raw_datasets_bib, raw_methods_bib, output_bib, input_md, output_md):
+
+    print("Rebibering bib files...")
+    rebiber_bib(raw_datasets_bib, raw_methods_bib, output_bib)
+
+    print("Reading dataset keys...")
+    with open(raw_datasets_bib) as f_bib:
+        parser = BibTexParser()
+        dataset_keys = list(
+            bibtexparser.load(f_bib, parser=parser).entries_dict.keys()
+        )
+
+    print("Reading bib file...")
+    with open(output_bib) as f_bib:
+        parser = BibTexParser()
+        entries = bibtexparser.load(f_bib, parser=parser).entries_dict
+
+    print("Rendering markdown...")
+    render_markdown(input_md, output_md, entries, dataset_keys)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--input_bib", type=str, default="visual_reasoning_raw.bib"
+        "--raw_datasets_bib", type=str, default="raw_datasets.bib"
+    )
+    parser.add_argument(
+        "--raw_methods_bib", type=str, default="raw_methods.bib"
     )
     parser.add_argument(
         "--output_bib", type=str, default="visual_reasoning.bib"
@@ -128,4 +165,11 @@ if __name__ == "__main__":
     parser.add_argument("--input_md", type=str, default="TEMPLATE.md")
     parser.add_argument("--output_md", type=str, default="README.md")
     args = parser.parse_args()
-    main(args)
+
+    main(
+        args.raw_datasets_bib,
+        args.raw_methods_bib,
+        args.output_bib,
+        args.input_md,
+        args.output_md,
+    )
