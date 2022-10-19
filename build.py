@@ -28,6 +28,10 @@ def conference_abbr(entry):
                 return "TPAMI"
             if "Learning Representations" in entry[key]:
                 return "ICLR"
+            if "Image Process" in entry[key]:
+                return "TIP"
+            if "Association for Computational Linguistics" in entry[key]:
+                return "ACL"
 
     if "url" in entry and "arxiv" in entry["url"]:
         return "arXiv"
@@ -99,9 +103,9 @@ def render_paper(entry, is_dataset=False):
     line += f" **{title}**"
 
     if "author" in entry:
-        if len(entry["author"].split(" and ")) > 1:
+        if len(entry["author"].split("and")) > 1:
             line += (
-                f", {entry['author'].split(' and ')[0].split(',')[-1]} et al."
+                f", {entry['author'].split('and')[0].replace(',', '').strip()} et al."
             )
         else:
             line += f", {entry['author'].replace(',', '')}"
