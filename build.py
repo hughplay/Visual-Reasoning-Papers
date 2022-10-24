@@ -5,6 +5,7 @@ from datetime import datetime
 import bibtexparser
 import rebiber
 from bibtexparser.bparser import BibTexParser
+from bibtexparser.customization import splitname
 
 
 def conference_abbr(entry):
@@ -103,17 +104,18 @@ def render_paper(entry, is_dataset=False):
     line += f" **{title}**"
 
     if "author" in entry:
-        if len(entry["author"].split("and")) > 1:
-            line += (
-                f", {entry['author'].split('and')[0].replace(',', '').strip()} et al."
-            )
+        authors = [
+            splitname(name.strip()) for name in entry["author"].split("and")
+        ]
+        if len(authors) > 2:
+            line += f", {authors[0]['last'][0]} et al."
         else:
-            line += f", {entry['author'].replace(',', '')}"
+            line += f", {' & '.join([author['last'][0] for author in authors])}"
 
     abbr = conference_abbr(entry)
     year = entry["year"] if "year" in entry else ""
 
-    line += f", {abbr} {year}"
+    line += f", *{abbr} {year}*"
 
     line += "."
 
