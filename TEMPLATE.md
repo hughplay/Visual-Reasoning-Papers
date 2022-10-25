@@ -5,7 +5,12 @@ A curated list of visual reasoning papers.
 - Last update time: {date}.
 - Maintainer: [Xin Hong](https://hongxin2019.github.io)
 
+
 "★" means the paper introduces a new task or dataset.
+
+## Survey Papers
+
+{survey_list}
 
 {paper_list_by_year}
 

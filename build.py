@@ -19,7 +19,7 @@ def conference_abbr(entry):
                 return "ICCV"
             if "ECCV" in entry[key]:
                 return "ECCV"
-            if "ICML" in entry[key]:
+            if "ICML" in entry[key] or ("Mach" in entry[key] and "Learn" in entry[key]):
                 return "ICML"
             if "IJCAI" in entry[key]:
                 return "IJCAI"
@@ -33,23 +33,25 @@ def conference_abbr(entry):
                 return "TIP"
             if "Association for Computational Linguistics" in entry[key]:
                 return "ACL"
+            if "WACV" in entry[key]:
+                return "WACV"
 
     if "url" in entry and "arxiv" in entry["url"]:
         return "arXiv"
     return ""
 
 
-def rebiber_bib(raw_datasets_bib, raw_methods_bib, output_bib):
-    dataset_entries = rebiber.load_bib_file(raw_datasets_bib)
-    methods_entries = rebiber.load_bib_file(raw_methods_bib)
-    all_bib_entries = dataset_entries + methods_entries
+def rebiber_bib(bibs, output_bib):
+    all_bib_entries = []
+    for bib in bibs:
+        all_bib_entries += rebiber.load_bib_file(bib)
     filepath = os.path.abspath(rebiber.__file__).replace("__init__.py", "")
     bib_list_path = os.path.join(filepath, "bib_list.txt")
     bib_db = rebiber.construct_bib_db(bib_list_path, start_dir=filepath)
     rebiber.normalize_bib(bib_db, all_bib_entries, output_bib, sort=True)
 
 
-def render_markdown(input_md, output_md, entries, dataset_keys):
+def render_markdown(input_md, output_md, entries, survey_keys, dataset_keys):
     mentioned_keys = []
     rendered_lines = []
     with open(input_md) as template_file:
@@ -60,6 +62,14 @@ def render_markdown(input_md, output_md, entries, dataset_keys):
 
         if "Last update time" in line:
             line = line.replace("{date}", datetime.now().strftime("%Y-%m-%d"))
+
+        if "{survey_list}" in line:
+            line = ""
+            for key in survey_keys:
+                if key not in entries:
+                    continue
+                line += render_paper(entries.pop(key))
+                mentioned_keys.append(key)
 
         if "{paper_list_by_year}" in line:
             line = ""
@@ -94,6 +104,13 @@ def render_markdown(input_md, output_md, entries, dataset_keys):
     return mentioned_keys
 
 
+def replace_name(name):
+    name = name.replace("{\\l}", "ł")
+    name = name.replace("{'n}", "ń")
+    name = name.replace("{\\o}", "ø")
+    return name
+
+
 def render_paper(entry, is_dataset=False):
     line = "-"
 
@@ -104,6 +121,7 @@ def render_paper(entry, is_dataset=False):
     line += f" **{title}**"
 
     if "author" in entry:
+        entry["author"] = replace_name(entry["author"])
         authors = [
             splitname(name.strip()) for name in entry["author"].split("and")
         ]
@@ -136,12 +154,24 @@ def render_paper(entry, is_dataset=False):
     return line
 
 
-def main(raw_datasets_bib, raw_methods_bib, output_bib, input_md, output_md):
+def main(
+    raw_survey,
+    raw_datasets_bib,
+    raw_methods_bib,
+    output_bib,
+    input_md,
+    output_md,
+):
 
     print("Rebibering bib files...")
-    rebiber_bib(raw_datasets_bib, raw_methods_bib, output_bib)
+    rebiber_bib([raw_survey, raw_datasets_bib, raw_methods_bib], output_bib)
 
     print("Reading dataset keys...")
+    with open(raw_survey) as f_bib:
+        parser = BibTexParser()
+        survey_keys = list(
+            bibtexparser.load(f_bib, parser=parser).entries_dict.keys()
+        )
     with open(raw_datasets_bib) as f_bib:
         parser = BibTexParser()
         dataset_keys = list(
@@ -154,11 +184,14 @@ def main(raw_datasets_bib, raw_methods_bib, output_bib, input_md, output_md):
         entries = bibtexparser.load(f_bib, parser=parser).entries_dict
 
     print("Rendering markdown...")
-    render_markdown(input_md, output_md, entries, dataset_keys)
+    render_markdown(input_md, output_md, entries, survey_keys, dataset_keys)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--raw_survey", type=str, default="raw_survey.bib"
+    )
     parser.add_argument(
         "--raw_datasets_bib", type=str, default="raw_datasets.bib"
     )
@@ -173,6 +206,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     main(
+        args.raw_survey,
         args.raw_datasets_bib,
         args.raw_methods_bib,
         args.output_bib,
