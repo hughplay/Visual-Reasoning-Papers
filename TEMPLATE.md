@@ -1,10 +1,9 @@
 # Visual Reasoning Papers
 
-A curated list of visual reasoning papers.
+A curated list of visual reasoning papers. We also provide an automated generated list of papers from the [arXiv](https://arxiv.org/). See [arxiv_visual_reasoning.md](arxiv_visual_reasoning.md) for more details.
 
 - Last update time: {date}.
 - Maintainer: [Xin Hong](https://hongxin2019.github.io)
-
 
 "★" means the paper introduces a new task or dataset.
 

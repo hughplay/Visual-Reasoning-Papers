@@ -1,6 +1,8 @@
 # Changelog
 
 
-## TODO
+## 2022-10-27 12:01:37
 
-- [ ] transform bib file into a markdown file
+- [x] transform bib file into a markdown file
+- [x] automatically generate paper list from arXiv
+- [x] plot trends of papers over time
