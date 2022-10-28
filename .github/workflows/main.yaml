@@ -1,0 +1,37 @@
+on:
+  schedule:
+  - cron: "0 8 1 * *"
+  workflow_dispatch:
+  
+jobs:
+  update_arxiv:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: install fonts
+        run: |
+          cd /tmp
+          sudo apt-get install -y fontconfig wget
+          wget https://github.com/hughplay/memo/raw/master/code/snippet/drawing/plot_fonts.tar.gz 
+          tar zxvf plot_fonts.tar.gz
+          sudo cp plot_fonts/* /usr/share/fonts/truetype/
+          sudo fc-cache -fv
+          cd -
+
+      - name: setup python
+        uses: actions/setup-python@v4.3.0
+        with:
+          python-version: 3.8
+          cache: 'pip'
+
+      - name: install and run
+        run: |
+          pip install -r requirements.txt
+          python tool/update_arxiv.py
+          
+      - name: Git Auto Commit
+        uses: stefanzweifel/git-auto-commit-action@v4.15.3
+        with:
+          commit_message: automatic update
