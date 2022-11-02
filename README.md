@@ -2,7 +2,7 @@
 
 A curated list of visual reasoning papers. We also provide an automated generated list of papers from the [arXiv](https://arxiv.org/). See [arxiv_visual_reasoning.md](arxiv_visual_reasoning.md) for more details.
 
-- Last update time: 2022-10-27.
+- Last update time: 2022-11-02.
 - Maintainer: [Xin Hong](https://hongxin2019.github.io)
 
 "★" means the paper introduces a new task or dataset.
@@ -16,14 +16,19 @@ A curated list of visual reasoning papers. We also provide an automated generate
 
 ## 2022
 - ★ **WinoGAViL: Gamified Association Benchmark to Challenge Vision-and-Language Models**, Bitton et al., *NeurIPS 2022*.
+- ★ **REX: Reasoning-aware and Grounded Explanation**, Chen & Zhao, *CVPR 2022*.
 - ★ **The Abduction of Sherlock Holmes: A Dataset for Visual Abductive Reasoning**, Hessel et al., *ECCV 2022*.
+- ★ **Maintaining Reasoning Consistency in Compositional Visual Question Answering**, Jing et al., *CVPR 2022*.
 - ★ **Visual Abductive Reasoning**, Liang et al., *CVPR 2022*.
 - ★ **QLEVR: A Diagnostic Dataset for Quantificational Language and Elementary Visual Reasoning**, Li & Søgaard, *ACL 2022*. [Paper](https://aclanthology.org/2022.findings-naacl.73)
+- ★ **From Representation to Reasoning: Towards Both Evidence and Commonsense Reasoning for Video Question-Answering**, Li et al., *CVPR 2022*.
 - ★ **Visual Spatial Reasoning**, Liu et al., *arXiv 2022*. [Paper](https://arxiv.org/abs/2205.00363)
 - **Grammar-Based Grounded Lexicon Learning**, Mao et al., *NeurIPS 2022*.
 - **RelViT: Concept-guided Vision Transformer for Visual Relational Reasoning**, Ma et al., *ICLR 2022*.
 - ★ **IntPhys 2019: A Benchmark for Visual Intuitive Physics Understanding**, Riochet et al., *TPAMI 2022*.
 - ★ **Winoground: Probing Vision and Language Models for Visio-Linguistic Compositionality**, Thrush et al., *CVPR 2022*.
+- ★ **Self-Supervised Spatial Reasoning on Multi-View Line Drawings**, Xiang et al., *CVPR 2022*.
+- **Learning Algebraic Representation for Systematic Generalization in Abstract Reasoning**, Zhang et al., *ECCV 2022*.
 - ★ **VideoABC: A Real-World Video Dataset for Abductive Visual Reasoning**, Zhao et al., *TIP 2022*.
 
 ## 2021
