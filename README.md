@@ -15,31 +15,31 @@ A curated list of visual reasoning papers. We also provide an automated generate
 
 
 ## 2022
-- ★ **WinoGAViL: Gamified Association Benchmark to Challenge Vision-and-Language Models**, Bitton et al., *NeurIPS 2022*.
-- ★ **REX: Reasoning-aware and Grounded Explanation**, Chen & Zhao, *CVPR 2022*.
-- ★ **The Abduction of Sherlock Holmes: A Dataset for Visual Abductive Reasoning**, Hessel et al., *ECCV 2022*.
-- ★ **Maintaining Reasoning Consistency in Compositional Visual Question Answering**, Jing et al., *CVPR 2022*.
-- ★ **Visual Abductive Reasoning**, Liang et al., *CVPR 2022*.
+- ★ **WinoGAViL: Gamified Association Benchmark to Challenge Vision-and-Language Models**, Bitton et al., *NeurIPS 2022*. [Paper](https://openreview.net/forum?id=aJtVdI251Vv)
+- ★ **REX: Reasoning-aware and Grounded Explanation**, Chen & Zhao, *CVPR 2022*. [Paper](https://ieeexplore.ieee.org/document/9879365/)
+- ★ **The Abduction of Sherlock Holmes: A Dataset for Visual Abductive Reasoning**, Hessel et al., *arXiv 2022*. [Paper](https://arxiv.org/abs/2202.04800)
+- ★ **Maintaining Reasoning Consistency in Compositional Visual Question Answering**, Jing et al., *CVPR 2022*. [Paper](https://ieeexplore.ieee.org/document/9879826/)
+- ★ **Visual Abductive Reasoning**, Liang et al., *CVPR 2022*. [Paper](https://ieeexplore.ieee.org/document/9880226/)
 - ★ **QLEVR: A Diagnostic Dataset for Quantificational Language and Elementary Visual Reasoning**, Li & Søgaard, *ACL 2022*. [Paper](https://aclanthology.org/2022.findings-naacl.73)
-- ★ **From Representation to Reasoning: Towards Both Evidence and Commonsense Reasoning for Video Question-Answering**, Li et al., *CVPR 2022*.
+- ★ **From Representation to Reasoning: Towards Both Evidence and Commonsense Reasoning for Video Question-Answering**, Li et al., *CVPR 2022*. [Paper](https://ieeexplore.ieee.org/document/9878800/)
 - ★ **Visual Spatial Reasoning**, Liu et al., *arXiv 2022*. [Paper](https://arxiv.org/abs/2205.00363)
-- **Grammar-Based Grounded Lexicon Learning**, Mao et al., *NeurIPS 2022*.
-- **RelViT: Concept-guided Vision Transformer for Visual Relational Reasoning**, Ma et al., *ICLR 2022*.
+- **Grammar-Based Grounded Lexicon Learning**, Mao et al., *NeurIPS 2022*. [Paper](https://openreview.net/forum?id=iI6nkEZkOl)
+- **RelViT: Concept-guided Vision Transformer for Visual Relational Reasoning**, Ma et al., *ICLR 2022*. [Paper](https://openreview.net/forum?id=afoV8W3-IYp)
 - ★ **IntPhys 2019: A Benchmark for Visual Intuitive Physics Understanding**, Riochet et al., *TPAMI 2022*.
-- ★ **Winoground: Probing Vision and Language Models for Visio-Linguistic Compositionality**, Thrush et al., *CVPR 2022*.
-- ★ **Self-Supervised Spatial Reasoning on Multi-View Line Drawings**, Xiang et al., *CVPR 2022*.
-- **Learning Algebraic Representation for Systematic Generalization in Abstract Reasoning**, Zhang et al., *ECCV 2022*.
-- ★ **VideoABC: A Real-World Video Dataset for Abductive Visual Reasoning**, Zhao et al., *TIP 2022*.
+- ★ **Winoground: Probing Vision and Language Models for Visio-Linguistic Compositionality**, Thrush et al., *CVPR 2022*. [Paper](https://ieeexplore.ieee.org/document/9878945/)
+- ★ **Self-Supervised Spatial Reasoning on Multi-View Line Drawings**, Xiang et al., *CVPR 2022*. [Paper](https://ieeexplore.ieee.org/document/9879170/)
+- **Learning Algebraic Representation for Systematic Generalization in Abstract Reasoning**, Zhang et al., *ECCV 2022*. [Paper](https://link.springer.com/content/pdf/10.1007/978-3-031-19842-7_40.pdf)
+- ★ **VideoABC: A Real-World Video Dataset for Abductive Visual Reasoning**, Zhao et al., *TIP 2022*. [Paper](https://ieeexplore.ieee.org/abstract/document/9893026)
 
 ## 2021
-- ★ **Scale-Localized Abstract Reasoning**, Benny et al., *CVPR 2021*.
+- ★ **Scale-Localized Abstract Reasoning**, Benny et al., *CVPR 2021*. [Paper](https://ieeexplore.ieee.org/document/9577474/)
 - **Grounding Physical Concepts of Objects and Events Through Dynamic
 Visual Reasoning**, Chen et al., *ICLR 2021*. [Paper](https://openreview.net/forum?id=bhCDO\_cEGCz)
-- **Meta Module Network for Compositional Visual Reasoning**, Chen et al., *WACV 2021*.
-- **Dynamic Visual Reasoning by Learning Differentiable Physics Models from Video and Language**, Ding et al., *NeurIPS 2021*.
-- ★ **Transformation Driven Visual Reasoning**, Hong et al., *CVPR 2021*.
-- ★ **Stratified Rule-Aware Network for Abstract Visual Reasoning**, Hu et al., *AAAI 2021*.
-- **Interpretable Visual Reasoning via Induced Symbolic Space**, Wang et al., *ICCV 2021*.
+- **Meta Module Network for Compositional Visual Reasoning**, Chen et al., *WACV 2021*. [Paper](https://ieeexplore.ieee.org/document/9423385/)
+- **Dynamic Visual Reasoning by Learning Differentiable Physics Models from Video and Language**, Ding et al., *NeurIPS 2021*. [Paper](https://proceedings.neurips.cc/paper/2021/hash/07845cd9aefa6cde3f8926d25138a3a2-Abstract.html)
+- ★ **Transformation Driven Visual Reasoning**, Hong et al., *CVPR 2021*. [Paper](https://ieeexplore.ieee.org/document/9578722/)
+- ★ **Stratified Rule-Aware Network for Abstract Visual Reasoning**, Hu et al., *AAAI 2021*. [Paper](https://ojs.aaai.org/index.php/AAAI/article/view/16248)
+- **Interpretable Visual Reasoning via Induced Symbolic Space**, Wang et al., *ICCV 2021*. [Paper](https://ieeexplore.ieee.org/document/9710153/)
 
 ## 2020
 - **Neuro-Symbolic Visual Reasoning: Disentangling "Visual" from "Reasoning"**, Amizadeh et al., *ICML 2020*. [Paper](http://proceedings.mlr.press/v119/amizadeh20a.html)
@@ -51,7 +51,7 @@ Reasoning**, Girdhar & Ramanan, *ICLR 2020*. [Paper](https://openreview.net/foru
 - **Dynamic Language Binding in Relational Visual Reasoning**, Le et al., *IJCAI 2020*. [Paper](https://doi.org/10.24963/ijcai.2020/114)
 - ★ **Bongard-LOGO: A New Benchmark for Human-Level Concept Learning and
 Reasoning**, Nie et al., *NeurIPS 2020*. [Paper](https://proceedings.neurips.cc/paper/2020/hash/bf15e9bbff22c7719020f9df4badc20a-Abstract.html)
-- ★ **VisualCOMET: Reasoning About the Dynamic Context of a Still Image**, Park et al., *ECCV 2020*.
+- ★ **VisualCOMET: Reasoning About the Dynamic Context of a Still Image**, Park et al., *ECCV 2020*. [Paper](https://doi.org/10.1007/978-3-030-58558-7_30)
 - ★ **V-PROM: A Benchmark for Visual Reasoning Using Visual Progressive
 Matrices**, Teney et al., *AAAI 2020*. [Paper](https://aaai.org/ojs/index.php/AAAI/article/view/6885)
 - **What Can Neural Networks Reason About?**, Xu et al., *ICLR 2020*. [Paper](https://openreview.net/forum?id=rJxbJeHFPS)
@@ -78,6 +78,7 @@ Sentences From Natural Supervision**, Mao et al., *ICLR 2019*. [Paper](https://o
 - ★ **Measuring abstract reasoning in neural networks**, Santoro et al., *ICML 2018*. [Paper](http://proceedings.mlr.press/v80/santoro18a.html)
 - **Compositional Attention Networks for Machine Reasoning**, Hudson & Manning, *ICLR 2018*. [Paper](https://openreview.net/forum?id=S1Euwz-Rb)
 - **FiLM: Visual Reasoning with a General Conditioning Layer**, Perez et al., *AAAI 2018*. [Paper](https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/16528)
+- **Chain of Reasoning for Visual Question Answering**, Wu et al., *NeurIPS 2018*. [Paper](https://proceedings.neurips.cc/paper/2018/hash/31fefc0e570cb3860f2a6d4b38c6490d-Abstract.html)
 - **Neural-Symbolic VQA: Disentangling Reasoning from Vision and Language
 Understanding**, Yi et al., *NeurIPS 2018*. [Paper](https://proceedings.neurips.cc/paper/2018/hash/5e388103a391daabe3de1d76a6739ccd-Abstract.html)
 
@@ -105,7 +106,7 @@ Question Answering**, Hudson & Manning, *CVPR 2019*. [Paper](http://openaccess.t
 ## Commonsense Visual Reasoning
 
 - ★ **From Recognition to Cognition: Visual Commonsense Reasoning**, Zellers et al., *CVPR 2019*. [Paper](http://openaccess.thecvf.com/content\_CVPR\_2019/html/Zellers\_From\_Recognition\_to\_Cognition\_Visual\_Commonsense\_Reasoning\_CVPR\_2019\_paper.html)
-- ★ **The Abduction of Sherlock Holmes: A Dataset for Visual Abductive Reasoning**, Hessel et al., *ECCV 2022*.
+- ★ **The Abduction of Sherlock Holmes: A Dataset for Visual Abductive Reasoning**, Hessel et al., *arXiv 2022*. [Paper](https://arxiv.org/abs/2202.04800)
 
 ## Abstract Visual Reasoning
 
@@ -122,6 +123,6 @@ Reasoning**, Girdhar & Ramanan, *ICLR 2020*. [Paper](https://openreview.net/foru
 ## Transformation Visual Reasoning
 
 - parkRobustChangeCaptioning2019
-- ★ **Transformation Driven Visual Reasoning**, Hong et al., *CVPR 2021*.
+- ★ **Transformation Driven Visual Reasoning**, Hong et al., *CVPR 2021*. [Paper](https://ieeexplore.ieee.org/document/9578722/)
 - liangVisualAbductiveReasoning2022 -->
 <!-- END ENTRIES -->
