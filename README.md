@@ -2,7 +2,7 @@
 
 A curated list of visual reasoning papers. We also provide an automated generated list of papers from the [arXiv](https://arxiv.org/). See [arxiv_visual_reasoning.md](arxiv_visual_reasoning.md) for more details.
 
-- Last update time: 2022-11-02.
+- Last update time: 2022-11-06.
 - Maintainer: [Xin Hong](https://hongxin2019.github.io)
 
 "★" means the paper introduces a new task or dataset.
@@ -14,10 +14,17 @@ A curated list of visual reasoning papers. We also provide an automated generate
 - **Reasoning about Actions over Visual and Linguistic Modalities: A Survey**, Sampat et al., *arXiv 2022*. [Paper](https://arxiv.org/abs/2207.07568)
 
 
+## Related Paper Lists
+
+- [Deep-Reasoning-Papers](https://github.com/floodsung/Deep-Reasoning-Papers/): Recent Papers including Neural Symbolic Reasoning, Logical Reasoning, Visual Reasoning, planning and any other topics connecting deep learning and reasoning.
+- [Awesome deep logic](https://github.com/ccclyu/awesome-deeplogic): A collection of papers of neural-symbolic AI (mainly focus on NLP applications).
+
+
 ## 2022
 - ★ **WinoGAViL: Gamified Association Benchmark to Challenge Vision-and-Language Models**, Bitton et al., *NeurIPS 2022*. [Paper](https://openreview.net/forum?id=aJtVdI251Vv)
 - ★ **REX: Reasoning-aware and Grounded Explanation**, Chen & Zhao, *CVPR 2022*. [Paper](https://ieeexplore.ieee.org/document/9879365/)
 - ★ **The Abduction of Sherlock Holmes: A Dataset for Visual Abductive Reasoning**, Hessel et al., *arXiv 2022*. [Paper](https://arxiv.org/abs/2202.04800)
+- ★ **Bongard-HOI: Benchmarking Few-Shot Visual Reasoning for Human-Object Interactions**, Jiang et al., *CVPR 2022*. [Paper](https://ieeexplore.ieee.org/document/9878697/)
 - ★ **Maintaining Reasoning Consistency in Compositional Visual Question Answering**, Jing et al., *CVPR 2022*. [Paper](https://ieeexplore.ieee.org/document/9879826/)
 - ★ **Visual Abductive Reasoning**, Liang et al., *CVPR 2022*. [Paper](https://ieeexplore.ieee.org/document/9880226/)
 - ★ **QLEVR: A Diagnostic Dataset for Quantificational Language and Elementary Visual Reasoning**, Li & Søgaard, *ACL 2022*. [Paper](https://aclanthology.org/2022.findings-naacl.73)
