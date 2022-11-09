@@ -12,10 +12,11 @@ A curated list of visual reasoning papers. We also provide an automated generate
 {survey_list}
 
 
-## Related Paper Lists
+## Related Paper Lists & Tutorials
 
 - [Deep-Reasoning-Papers](https://github.com/floodsung/Deep-Reasoning-Papers/): Recent Papers including Neural Symbolic Reasoning, Logical Reasoning, Visual Reasoning, planning and any other topics connecting deep learning and reasoning.
 - [Awesome deep logic](https://github.com/ccclyu/awesome-deeplogic): A collection of papers of neural-symbolic AI (mainly focus on NLP applications).
+- [Neural Machine Reasoning](https://neuralreasoning.github.io/): This tutorial reviews recent advances on dynamic neural networks that aim to reach a deliberative reasoning capability. This goes beyond the current associative pattern matching excelled by deep learning.
 
 {paper_list_by_year}
 

@@ -2,7 +2,7 @@
 
 A curated list of visual reasoning papers. We also provide an automated generated list of papers from the [arXiv](https://arxiv.org/). See [arxiv_visual_reasoning.md](arxiv_visual_reasoning.md) for more details.
 
-- Last update time: 2022-11-06.
+- Last update time: 2022-11-09.
 - Maintainer: [Xin Hong](https://hongxin2019.github.io)
 
 "★" means the paper introduces a new task or dataset.
@@ -14,10 +14,11 @@ A curated list of visual reasoning papers. We also provide an automated generate
 - **Reasoning about Actions over Visual and Linguistic Modalities: A Survey**, Sampat et al., *arXiv 2022*. [Paper](https://arxiv.org/abs/2207.07568)
 
 
-## Related Paper Lists
+## Related Paper Lists & Tutorials
 
 - [Deep-Reasoning-Papers](https://github.com/floodsung/Deep-Reasoning-Papers/): Recent Papers including Neural Symbolic Reasoning, Logical Reasoning, Visual Reasoning, planning and any other topics connecting deep learning and reasoning.
 - [Awesome deep logic](https://github.com/ccclyu/awesome-deeplogic): A collection of papers of neural-symbolic AI (mainly focus on NLP applications).
+- [Neural Machine Reasoning](https://neuralreasoning.github.io/): This tutorial reviews recent advances on dynamic neural networks that aim to reach a deliberative reasoning capability. This goes beyond the current associative pattern matching excelled by deep learning.
 
 
 ## 2022
