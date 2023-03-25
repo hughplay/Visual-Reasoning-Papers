@@ -24,7 +24,13 @@ client = arxiv.Client(page_size=1000, delay_seconds=3, num_retries=3)
 updated_papers = []
 for paper in client.results(
     arxiv.Search(
-        query="ti:%22visual reasoning%22 OR abs:%22visual reasoning%22",
+        query=(
+            "all:%22visual reasoning%22"
+            " OR all:%22visual abductive reasoning%22"
+            " OR all:%22visual abstract reasoning%22"
+            " OR all:%22visual commonsense reasoning%22"
+            " OR all:%22visual spatial reasoning%22"
+        ),
         sort_by=arxiv.SortCriterion.LastUpdatedDate,
         sort_order=arxiv.SortOrder.Descending,
     )
@@ -32,7 +38,7 @@ for paper in client.results(
     entry_id = paper.entry_id.split("/")[-1].split("v")[0]
     updated = datetime.strftime(paper.updated, "%Y-%m-%d %H:%M:%S")
     if entry_id in papers and updated == papers[entry_id]["updated"]:
-        break
+        continue
     else:
         papers[entry_id] = paper.__dict__
         papers[entry_id] = {
@@ -87,9 +93,9 @@ for paper in paper_list:
 sorted_years_count = sorted(years_count.items(), key=lambda x: x[0])
 years, count = zip(*sorted_years_count)
 plt.plot(years, count, marker="^", color="black")
-plt.title(
-    "Visual reasoning papers on arXiv over time"
-)
+# plt.title(
+#     "Visual reasoning papers on arXiv over time"
+# )
 plt.xlabel("Year")
 plt.ylabel("#papers")
 plt.savefig("arxiv_trends_year.png")
