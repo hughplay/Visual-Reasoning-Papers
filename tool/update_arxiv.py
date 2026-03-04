@@ -1,6 +1,5 @@
 from datetime import datetime
 from pathlib import Path
-from turtle import color
 
 import arxiv
 import jsonlines
@@ -20,42 +19,50 @@ if arxiv_cache.exists():
 
 
 # search for papers
-client = arxiv.Client(page_size=1000, delay_seconds=3, num_retries=3)
+# Use a smaller page_size to avoid HTTP 500 errors from arXiv API
+client = arxiv.Client(page_size=300, delay_seconds=3, num_retries=3)
 updated_papers = []
-for paper in client.results(
-    arxiv.Search(
-        query=(
-            "all:%22visual reasoning%22"
-            " OR all:%22visual abductive reasoning%22"
-            " OR all:%22visual abstract reasoning%22"
-            " OR all:%22visual commonsense reasoning%22"
-            " OR all:%22visual spatial reasoning%22"
-        ),
-        sort_by=arxiv.SortCriterion.LastUpdatedDate,
-        sort_order=arxiv.SortOrder.Descending,
-    )
-):
-    entry_id = paper.entry_id.split("/")[-1].split("v")[0]
-    updated = datetime.strftime(paper.updated, "%Y-%m-%d %H:%M:%S")
-    if entry_id in papers and updated == papers[entry_id]["updated"]:
-        continue
-    else:
-        papers[entry_id] = paper.__dict__
-        papers[entry_id] = {
-            "entry_id": entry_id,
-            "title": paper.title,
-            "authors": [author.name for author in paper.authors],
-            "published": datetime.strftime(
-                paper.published, "%Y-%m-%d %H:%M:%S"
+try:
+    for paper in client.results(
+        arxiv.Search(
+            query=(
+                "all:%22visual reasoning%22"
+                " OR all:%22visual abductive reasoning%22"
+                " OR all:%22visual abstract reasoning%22"
+                " OR all:%22visual commonsense reasoning%22"
+                " OR all:%22visual spatial reasoning%22"
             ),
-            "updated": updated,
-            "summary": paper.summary,
-            "comment": paper.comment,
-            "links": [
-                link.href for link in paper.links if "arxiv" not in link.href
-            ],
-        }
-        updated_papers.append(entry_id)
+            sort_by=arxiv.SortCriterion.LastUpdatedDate,
+            sort_order=arxiv.SortOrder.Descending,
+        )
+    ):
+        entry_id = paper.entry_id.split("/")[-1].split("v")[0]
+        updated = datetime.strftime(paper.updated, "%Y-%m-%d %H:%M:%S")
+        if entry_id in papers and updated == papers[entry_id]["updated"]:
+            continue
+        else:
+            papers[entry_id] = paper.__dict__
+            papers[entry_id] = {
+                "entry_id": entry_id,
+                "title": paper.title,
+                "authors": [author.name for author in paper.authors],
+                "published": datetime.strftime(
+                    paper.published, "%Y-%m-%d %H:%M:%S"
+                ),
+                "updated": updated,
+                "summary": paper.summary,
+                "comment": paper.comment,
+                "links": [
+                    link.href for link in paper.links if "arxiv" not in link.href
+                ],
+            }
+            updated_papers.append(entry_id)
+except arxiv.HTTPError as e:
+    print(f"Warning: arXiv API error occurred: {e}")
+    print("Continuing with cached papers...")
+except Exception as e:
+    print(f"Warning: Unexpected error occurred: {e}")
+    print("Continuing with cached papers...")
 
 
 # save paper to cache
