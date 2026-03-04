@@ -106,6 +106,7 @@ plt.plot(years, count, marker="^", color="black")
 plt.xlabel("Year")
 plt.ylabel("#papers")
 plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
 plt.savefig("arxiv_trends_year.png")
 
 
